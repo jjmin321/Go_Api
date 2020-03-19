@@ -1,7 +1,7 @@
 package main
 
 import (
-	"MaskInfo/api"
+	"MaskInfo_api/api"
 	"encoding/json"
 	"net/http"
 	"sync"
