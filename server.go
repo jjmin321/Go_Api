@@ -1,7 +1,7 @@
 package main
 
 import (
-	"MyMusicAlbum/api"
+	"MaskInfo/api"
 	"encoding/json"
 	"net/http"
 	"sync"
