@@ -4,13 +4,13 @@
 
 ## 📦 사용한 패키지
 ```go
-    "encoding/json"
-	"fmt"
-	"net/http"
-	"strconv"
-    "sync"
-    "github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+"encoding/json"
+"fmt"
+"net/http"
+"strconv"
+"sync"
+"github.com/labstack/echo"
+"github.com/labstack/echo/middleware"
 ```
 
 ## 🖥️ 사용한 서버 프레임워크
