@@ -109,6 +109,7 @@ e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
 }))
 ```
 <img width="1440" alt="Screen Shot 2020-03-23 at 15 18 22" src="https://user-images.githubusercontent.com/52072077/77288466-3ccf8900-6d1b-11ea-8a9b-ac2fc808e218.png">
+
 # API - FUNCTION
 
 ### @GET /drugstore
