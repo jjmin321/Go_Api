@@ -2,7 +2,6 @@ package main
 
 import (
 	"MaskInfo_api/api"
-	"encoding/json"
 	"net/http"
 	"sync"
 
@@ -20,8 +19,8 @@ func main() {
 	}))
 	e.GET("/drugstore", func(c echo.Context) error {
 		name := c.QueryParam("name")
-		slice1 := []string{}
-		ch := make(chan string, 50)
+		slice1 := []interface{}{}
+		ch := make(chan interface{}, 50)
 		var wg sync.WaitGroup
 		for i := 1; i <= 54; i++ {
 			wg.Add(1)
@@ -32,13 +31,12 @@ func main() {
 		for i := range ch {
 			slice1 = append(slice1, i)
 		}
-		jsonBytes, _ := json.Marshal(slice1)
-		return c.JSONBlob(http.StatusOK, jsonBytes)
+		return c.JSON(http.StatusOK, slice1)
 	})
 
 	e.GET("/masks", func(c echo.Context) error {
 		code := c.QueryParam("code")
-		ch := make(chan string, 1)
+		ch := make(chan interface{}, 1)
 		var wg sync.WaitGroup
 		for i := 1; i <= 51; i++ {
 			wg.Add(1)

@@ -29,7 +29,7 @@ type Sales struct {
 }
 
 // 약국 이름을 받아서 약국 코드번호 출력
-func Drugstore(name string, page int, wg *sync.WaitGroup, ch chan string) {
+func Drugstore(name string, page int, wg *sync.WaitGroup, ch chan interface{}) {
 	//GET 호출
 	stringpage := strconv.Itoa(page)
 	address := "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/stores/json?page=" + stringpage
@@ -48,15 +48,15 @@ func Drugstore(name string, page int, wg *sync.WaitGroup, ch chan string) {
 			// for i := 1; i <= 51; i++ {
 			// 	go masks(v.Code, v.Addr, v.Name, i, wg)
 			// }
-			jsonBytes, _ := json.Marshal(v)
-			jsonString := string(jsonBytes)
-			ch <- jsonString
+			// jsonBytes, _ := json.Marshal(v)
+			// jsonString := string(jsonBytes)
+			ch <- v
 		}
 	}
 	wg.Done()
 }
 
-func Masks(code string, page int, wg *sync.WaitGroup, ch chan string) {
+func Masks(code string, page int, wg *sync.WaitGroup, ch chan interface{}) {
 	stringpage := strconv.Itoa(page)
 	address := "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/sales/json?page=" + stringpage
 	// fmt.Println(address)
@@ -72,9 +72,9 @@ func Masks(code string, page int, wg *sync.WaitGroup, ch chan string) {
 	for _, v := range result.Sales {
 		if v.Code == code {
 			fmt.Println(v.Code, v.CreatedAt, v.RemainStat, v.StockAt)
-			jsonBytes, _ := json.Marshal(v)
-			jsonString := string(jsonBytes)
-			ch <- jsonString
+			// jsonBytes, _ := json.Marshal(v)
+			// jsonString := string(jsonBytes)
+			ch <- v
 		}
 	}
 	wg.Done()
