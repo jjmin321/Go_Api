@@ -108,16 +108,20 @@ e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
 		Format: `Time = ${time_rfc3339}], Status = ${status}, Method = ${method}, Uri = ${uri}, User_agent = ${user_agent}, Error = ${error},  Remote_ip = ${remote_ip}` + "\n",
 }))
 ```
-
+<img width="1440" alt="Screen Shot 2020-03-23 at 15 18 22" src="https://user-images.githubusercontent.com/52072077/77288466-3ccf8900-6d1b-11ea-8a9b-ac2fc808e218.png">
 # API - FUNCTION
 
 ### @GET /drugstore
 - Request : name (QueryParam) [약국 이름]
 - Response : 약국 이름, 약국 주소, 약국 코드 (JSON)
+<img width="1440" alt="Screen Shot 2020-03-23 at 15 23 05" src="https://user-images.githubusercontent.com/52072077/77288467-3e00b600-6d1b-11ea-974c-e442b0c75b77.png">
 
 ### @GET /masks
 - Request : code (QueryParam) [약국 코드]
 - Response : 해당 약국 마스크 재고량이 갱신된 시간, 마스크 재고량, 최근 재고 갱신 시간 (JSON)
+
+<img width="1440" alt="Screen Shot 2020-03-23 at 15 27 30" src="https://user-images.githubusercontent.com/52072077/77288470-3f31e300-6d1b-11ea-8199-2e30ab041f08.png">
+
 
 # 2020/3/23 - 마지막 코드 수정 
 1. JSON 값이 들어있는 웹페이지 1 ~ 50 개를 고루틴(쓰레드)을 통해 들어간 후 사용자가 검색한 값만 찾아 채널을 통해 비동기 전송 : 속도 증가 
