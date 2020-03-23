@@ -20,7 +20,7 @@ func main() {
 	e.GET("/drugstore", func(c echo.Context) error {
 		name := c.QueryParam("name")
 		slice1 := []interface{}{}
-		ch := make(chan interface{}, 50)
+		ch := make(chan interface{}, 500)
 		var wg sync.WaitGroup
 		for i := 1; i <= 54; i++ {
 			wg.Add(1)
