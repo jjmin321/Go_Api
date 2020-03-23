@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 	"sync"
@@ -71,7 +70,7 @@ func Masks(code string, page int, wg *sync.WaitGroup, ch chan interface{}) {
 
 	for _, v := range result.Sales {
 		if v.Code == code {
-			fmt.Println(v.Code, v.CreatedAt, v.RemainStat, v.StockAt)
+			// fmt.Println(v.Code, v.CreatedAt, v.RemainStat, v.StockAt)
 			// jsonBytes, _ := json.Marshal(v)
 			// jsonString := string(jsonBytes)
 			ch <- v
