@@ -18,6 +18,7 @@ type StoreInfo struct {
 	Code string `json:"code"`
 	Addr string `json:"addr"`
 	Name string `json:"name"`
+	Type string `json:"type"`
 }
 
 type Sales struct {
