@@ -36,6 +36,7 @@ func main() {
 
 	e.GET("/masks", func(c echo.Context) error {
 		code := c.QueryParam("code")
+		slice1 := []interface{}{}
 		ch := make(chan interface{}, 1)
 		var wg sync.WaitGroup
 		for i := 1; i <= 51; i++ {
@@ -43,7 +44,11 @@ func main() {
 			go api.Masks(code, i, &wg, ch)
 		}
 		wg.Wait()
-		return c.JSON(http.StatusOK, <-ch)
+		close(ch)
+		for i := range ch {
+			slice1 = append(slice1, i)
+		}
+		return c.JSON(http.StatusOK, slice1)
 	})
 	e.Logger.Fatal(e.Start(":3000"))
 }

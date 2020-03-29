@@ -129,3 +129,4 @@ e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
 2. waitgroup, channel을 통해 2단 동기화 : waitgroup을 통해 1 ~ 50 개의 고루틴(쓰레드)이 모두 끝나기 전까지 기다림, channel을 통해 모든 비동기 전송 값을 받으면 클라이언트에 값을 반환
 3. channel의 버퍼 크기 수정 : 채널의 버퍼 크기를 50으로 해놨더니 신세게약국(80개 존재)을 검색하면 오류가 발생했다. 채널 버퍼 크기를 50에서 500으로 수정해줬다.
 4. JSON으로 다시 인코딩할 필요 없이 slice 와 채널 값 그대로 반환 : Echo 프레임워크에서 제공하는 JSON 반환은 어떤 값이든 자동으로 JSON으로 바꿔줌
+5. 채널 값을 반환하는 mask api 또한 slice로 변환 : 채널에 값이 들어오지 않으면 무한 로딩되는 것을 개선 
