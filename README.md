@@ -1,10 +1,10 @@
 <div align="center">
   
-![GitHub contributors](https://img.shields.io/github/contributors/jjmin321/Go_MyApi)
-![GitHub forks](https://img.shields.io/github/forks/jjmin321/Go_MyApi?label=Forks)
-![GitHub stars](https://img.shields.io/github/stars/jjmin321/Go_MyApi?style=Stars)
-![GitHub issues](https://img.shields.io/github/issues-raw/jjmin321/Go_MyApi)
-[![Go Report Card](https://goreportcard.com/badge/github.com/jjmin321/Go_MyApi)](https://goreportcard.com/report/github.com/jjmin321/Go_MyApi)
+![GitHub contributors](https://img.shields.io/github/contributors/jjmin321/My_api)
+![GitHub forks](https://img.shields.io/github/forks/jjmin321/My_api?label=Forks)
+![GitHub stars](https://img.shields.io/github/stars/jjmin321/My_api?style=Stars)
+![GitHub issues](https://img.shields.io/github/issues-raw/jjmin321/My_api)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jjmin321/My_api)](https://goreportcard.com/report/github.com/jjmin321/My_api)
 
 </div>
 
