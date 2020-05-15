@@ -11,13 +11,14 @@
 # 🚀 Go_MyApi 
 
 ## MaskInfo 사용법
-https://jjmin321.github.io/development/Mask-Api를-만들면서-배운-점/
+<a href="https://jjmin321.github.io/development/Mask-Api를-만들면서-배운-점/" target="_blank">MaskInfo 설명서</a>
+
 
 ## Jwt 사용법
-https://jjmin321.github.io/development/Jwt-api-사용법/
+<a href="https://jjmin321.github.io/development/Jwt-api-사용법/" target="_blank">JWT 설명서</a>
 
 ## Translate 사용법
-https://jjmin321.github.io/development/Translate-api-사용법/
+<a href="https://jjmin321.github.io/development/Translate-api-사용법/" target="_blank">Translate 설명서</a>
 
 
 
