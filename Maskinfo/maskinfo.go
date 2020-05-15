@@ -1,10 +1,12 @@
-package api
+package maskinfo
 
 import (
 	"encoding/json"
 	"net/http"
 	"strconv"
 	"sync"
+
+	"github.com/labstack/echo"
 )
 
 type Result struct {
@@ -28,12 +30,26 @@ type Sales struct {
 	StockAt    string `json:"stock_at"`
 }
 
-// 약국 이름을 받아서 약국 코드번호 출력
-func Drugstore(name string, page int, wg *sync.WaitGroup, ch chan interface{}) {
-	//GET 호출
+func Drugstore(c echo.Context) error {
+	name := c.QueryParam("name")
+	slice1 := []interface{}{}
+	ch := make(chan interface{}, 500)
+	var wg sync.WaitGroup
+	for i := 1; i <= 54; i++ {
+		wg.Add(1)
+		go FindDrugstore(name, i, &wg, ch)
+	}
+	wg.Wait()
+	close(ch)
+	for i := range ch {
+		slice1 = append(slice1, i)
+	}
+	return c.JSON(http.StatusOK, slice1)
+}
+
+func FindDrugstore(name string, page int, wg *sync.WaitGroup, ch chan interface{}) {
 	stringpage := strconv.Itoa(page)
 	address := "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/stores/json?page=" + stringpage
-	// fmt.Println(address)
 	resp, err := http.Get(address)
 	if err != nil {
 		panic(err)
@@ -56,10 +72,26 @@ func Drugstore(name string, page int, wg *sync.WaitGroup, ch chan interface{}) {
 	wg.Done()
 }
 
-func Masks(code string, page int, wg *sync.WaitGroup, ch chan interface{}) {
+func Masks(c echo.Context) error {
+	code := c.QueryParam("code")
+	slice1 := []interface{}{}
+	ch := make(chan interface{}, 1)
+	var wg sync.WaitGroup
+	for i := 1; i <= 51; i++ {
+		wg.Add(1)
+		go FindMasks(code, i, &wg, ch)
+	}
+	wg.Wait()
+	close(ch)
+	for i := range ch {
+		slice1 = append(slice1, i)
+	}
+	return c.JSON(http.StatusOK, slice1)
+}
+
+func FindMasks(code string, page int, wg *sync.WaitGroup, ch chan interface{}) {
 	stringpage := strconv.Itoa(page)
 	address := "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/sales/json?page=" + stringpage
-	// fmt.Println(address)
 	resp, err := http.Get(address)
 	if err != nil {
 		panic(err)
@@ -79,3 +111,14 @@ func Masks(code string, page int, wg *sync.WaitGroup, ch chan interface{}) {
 	}
 	wg.Done()
 }
+
+//////////////////////////////////// API 사용 예시 //////////////////////////////////////////
+// func main() {
+// 	e := echo.New()
+// 	e.Use(middleware.Logger())
+// 	e.Use(middleware.Recover())
+// 	e.GET("/drugstore", FindDrugstore)
+
+// 	e.GET("/masks", FindMasks)
+// 	e.Logger.Fatal(e.Start(":3000"))
+// }
