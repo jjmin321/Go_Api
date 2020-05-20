@@ -1,3 +1,4 @@
+// GO 기본 라이브러리 net/http로 구현된 Oauth2 API
 package oauth2
 
 import (
@@ -11,9 +12,14 @@ import (
 	"golang.org/x/oauth2/google"
 )
 
-var err = godotenv.Load("google.env")
+var err = godotenv.Load("googleOauth.env")
 
 var (
+	googleOauthConfig *oauth2.Config
+	oauthstate        = "dulemona"
+)
+
+func init() {
 	googleOauthConfig = &oauth2.Config{
 		RedirectURL:  "http://localhost:3000/callback",
 		ClientID:     os.Getenv("GOOGLE_CLIENT_ID"),
@@ -21,8 +27,7 @@ var (
 		Scopes:       []string{"https://www.googleapis.com/auth/userinfo.email"},
 		Endpoint:     google.Endpoint,
 	}
-	randomState = "random"
-)
+}
 
 func handleHome(w http.ResponseWriter, r *http.Request) {
 	var html = `<html><body><a href="/login">Google Login</a></body></html>`
@@ -30,12 +35,12 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleLogin(w http.ResponseWriter, r *http.Request) {
-	url := googleOauthConfig.AuthCodeURL(randomState)
+	url := googleOauthConfig.AuthCodeURL(oauthstate)
 	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
 }
 
 func handleCallback(w http.ResponseWriter, r *http.Request) {
-	if r.FormValue("state") != randomState {
+	if r.FormValue("state") != oauthstate {
 		fmt.Println("state is not valid")
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
@@ -67,7 +72,7 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 //////////////////////////////////////// API 사용 예시 ////////////////////////////////////////
 // func main() {
 // 	http.HandleFunc("/", handleHome)
-// 	http.HandleFunc("/login", handleLogin)
-// 	http.HandleFunc("/callback", handleCallback)
+//  http.HandleFunc("/login", handleLogin)
+//  http.HandleFunc("/callback", handleCallback)
 // 	http.ListenAndServe(":3000", nil)
 // }
