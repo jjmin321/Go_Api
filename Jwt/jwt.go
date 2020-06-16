@@ -62,7 +62,7 @@ func Restricted(c echo.Context) error {
 
 // 	// Restricted group
 // 	r := e.Group("/restricted")
-// 	r.Use(middleware.JWT([]byte("secret")))
+// r.Use(middleware.JWT([]byte("secret")))
 // 	r.POST("", restricted)
 
 // 	e.Logger.Fatal(e.Start(":1323"))
