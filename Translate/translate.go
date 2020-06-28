@@ -35,14 +35,26 @@ func errCheck(err error) {
 	}
 }
 
-func translate(c echo.Context) error {
+func TranslatorPage(c echo.Context) error {
+	var html = `<html><body>
+	<form action="/translate" method="GET">
+	from<br><input type="search" name="source"><br>
+	to<br><input type="search" name="target"><br>
+	text<br><input type="search" name="text">
+	<input type="submit" value="번역">
+	</form>
+</body></html>`
+	return c.HTML(http.StatusOK, html)
+}
+
+func Translate(c echo.Context) error {
 	var translator Translator
 	const papago = "https://openapi.naver.com/v1/papago/n2mt"
 	err := godotenv.Load("secret.env")
 	errCheck(err)
 	clientID := os.Getenv("CLIENT_ID")
 	clientSecret := os.Getenv("CLIENT_SECRET")
-	source, target, text := c.Param("source"), c.Param("target"), c.Param("text")
+	source, target, text := c.QueryParam("source"), c.QueryParam("target"), c.QueryParam("text")
 	data := url.Values{}
 	data.Set("source", source)
 	data.Set("target", target)
@@ -63,12 +75,3 @@ func translate(c echo.Context) error {
 		"result": translator.Message.Result.TranslatedText,
 	})
 }
-
-/////////////////////////////////// API 사용 예시 ///////////////////////////////////////
-// func main() {
-// 	e := echo.New()
-// 	e.Use(middleware.Logger())
-// 	e.Use(middleware.Recover())
-// 	e.GET("/translate/:source/:target/:text", translate)
-// 	e.Logger.Fatal(e.Start(":3000"))
-// }

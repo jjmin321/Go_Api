@@ -31,7 +31,7 @@ type Sales struct {
 }
 
 func Drugstore(c echo.Context) error {
-	name := c.QueryParam("name")
+	name := c.Param("name")
 	slice1 := []interface{}{}
 	ch := make(chan interface{}, 500)
 	var wg sync.WaitGroup
@@ -61,11 +61,6 @@ func FindDrugstore(name string, page int, wg *sync.WaitGroup, ch chan interface{
 
 	for _, v := range result.StoreInfos {
 		if v.Name == name {
-			// for i := 1; i <= 51; i++ {
-			// 	go masks(v.Code, v.Addr, v.Name, i, wg)
-			// }
-			// jsonBytes, _ := json.Marshal(v)
-			// jsonString := string(jsonBytes)
 			ch <- v
 		}
 	}
@@ -73,9 +68,9 @@ func FindDrugstore(name string, page int, wg *sync.WaitGroup, ch chan interface{
 }
 
 func Masks(c echo.Context) error {
-	code := c.QueryParam("code")
+	code := c.Param("code")
 	slice1 := []interface{}{}
-	ch := make(chan interface{}, 1)
+	ch := make(chan interface{}, 500)
 	var wg sync.WaitGroup
 	for i := 1; i <= 51; i++ {
 		wg.Add(1)
@@ -103,22 +98,8 @@ func FindMasks(code string, page int, wg *sync.WaitGroup, ch chan interface{}) {
 
 	for _, v := range result.Sales {
 		if v.Code == code {
-			// fmt.Println(v.Code, v.CreatedAt, v.RemainStat, v.StockAt)
-			// jsonBytes, _ := json.Marshal(v)
-			// jsonString := string(jsonBytes)
 			ch <- v
 		}
 	}
 	wg.Done()
 }
-
-//////////////////////////////////// API 사용 예시 //////////////////////////////////////////
-// func main() {
-// 	e := echo.New()
-// 	e.Use(middleware.Logger())
-// 	e.Use(middleware.Recover())
-// 	e.GET("/drugstore", FindDrugstore)
-
-// 	e.GET("/masks", FindMasks)
-// 	e.Logger.Fatal(e.Start(":3000"))
-// }

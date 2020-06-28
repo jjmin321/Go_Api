@@ -8,13 +8,12 @@
 
 </div>
 
-# 🚀 Go_MyApi 
+# 🚀 Go_MyApi
 
 ## MaskInfo 사용법
 <a target="_blank" rel="noopener noreferrer" href="https://jjmin321.github.io/development/Mask-Api를-만들면서-배운-점/">MaskInfo 설명서</a>
 - 약국 이름을 검색 시 전국에 있는 모든 약국의 정보를 알려줌
 - 마스크 재고량 검색 시 마스크 재고량 정보를 알려줌 
-
 
 ## Jwt 사용법
 <a target="_blank" rel="noopener noreferrer" href="https://jjmin321.github.io/development/Jwt-api-사용법/">JWT 설명서</a>
