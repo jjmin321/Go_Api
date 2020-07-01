@@ -15,19 +15,10 @@
 - 약국 이름을 검색 시 전국에 있는 모든 약국의 정보를 알려줌
 - 마스크 재고량 검색 시 마스크 재고량 정보를 알려줌 
 
-## Jwt 사용법
-<a target="_blank" rel="noopener noreferrer" href="https://jjmin321.github.io/development/Jwt-api-사용법/">JWT 설명서</a>
-- 로그인 성공 시 그에 맞는 JWT토큰을 줌 
-- JWT토큰을 분석 후 유효한 토큰이라면 유저 정보를 반환해 줌 
-
 ## Translate 사용법
 <a target="_blank" rel="noopener noreferrer" href="https://jjmin321.github.io/development/Translate-api-사용법/">Translate 설명서</a>
 - 원본 언어와 번역할 언어, 원본 텍스트를 입력 시 그에 맞는 번역 값을 줌
 
-## Oauth2 사용법
-<!-- <a target="_blank" rel="noopener noreferrer" href="https://jjmin321.github.io/development/Oauth2-api-사용법/">Oauth2 설명서</a> -->
-- 구글 로그인 성공 시 유저 정보를 콜백 URL을 통해 줌
-- 똑같은 기능을 GO언어 기본 라이브러리 net/http , GO언어 서버 프레임워크 echo 두 가지로 각각 구현했다.
 
 
 
