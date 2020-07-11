@@ -1,4 +1,4 @@
-package main
+package naturallanguage
 
 import (
 	"context"
@@ -9,16 +9,15 @@ import (
 	languagepb "google.golang.org/genproto/googleapis/cloud/language/v1"
 )
 
-func main() {
+// Analyze method return analyzed result of text
+func Analyze() {
 	ctx := context.Background()
 
 	client, err := language.NewClient(ctx)
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
-	var text string
-	fmt.Print("입력 : ")
-	fmt.Scanln(&text)
+	text := c.Param("text")
 
 	sentiment, err := client.AnalyzeSentiment(ctx, &languagepb.AnalyzeSentimentRequest{
 		Document: &languagepb.Document{
