@@ -2,8 +2,8 @@ package main
 
 import (
 	maskinfo "My_api/Maskinfo"
-	naturallanguage "My_api/NaturalLanguage"
 	translate "My_api/Translate"
+	"My_api/naturallanguage"
 
 	"github.com/labstack/echo"
 )
@@ -14,6 +14,6 @@ func main() {
 	e.GET("/masks/:code", maskinfo.Masks)
 	e.GET("/translator", translate.TranslatorPage)
 	e.GET("/translate", translate.Translate)
-	e.GET("/analyze/:text", naturallanguage.Analyze)
+	e.GET("/analyze", naturallanguage.Analyze)
 	e.Logger.Fatal(e.Start(":3000"))
 }
