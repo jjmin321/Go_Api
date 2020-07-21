@@ -12,7 +12,7 @@
 
 ## MaskInfo 사용법
 <a target="_blank" rel="noopener noreferrer" href="https://jjmin321.github.io/development/Mask-Api를-만들면서-배운-점/">MaskInfo 설명서</a>
-- 약국 이름을 검색 시 전국에 있는 모든 약국의 정보를 알려줌
+- 약국 이름을 검색 시 전국에 있는 모든 약국의 정보를 제공 
 - 마스크 재고량 검색 시 마스크 재고량 정보를 JSON으로 제공
 
 ## Translate 사용법
