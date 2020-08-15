@@ -35,6 +35,7 @@ func errCheck(err error) {
 	}
 }
 
+// TranslatorPage - 번역기 클라이언트
 func TranslatorPage(c echo.Context) error {
 	var html = `<html><body>
 	<form action="/translate" method="GET">
@@ -47,6 +48,7 @@ func TranslatorPage(c echo.Context) error {
 	return c.HTML(http.StatusOK, html)
 }
 
+// Translate - 번역기 api
 func Translate(c echo.Context) error {
 	var translator Translator
 	const papago = "https://openapi.naver.com/v1/papago/n2mt"
@@ -54,7 +56,7 @@ func Translate(c echo.Context) error {
 	errCheck(err)
 	clientID := os.Getenv("CLIENT_ID")
 	clientSecret := os.Getenv("CLIENT_SECRET")
-	source, target, text := c.QueryParam("source"), c.QueryParam("target"), c.QueryParam("text")
+	source, target, text := c.Param("source"), c.Param("target"), c.Param("text")
 	data := url.Values{}
 	data.Set("source", source)
 	data.Set("target", target)
@@ -68,6 +70,12 @@ func Translate(c echo.Context) error {
 	req.Header.Add("Content_Type", "charset/utf-8")
 	req.Header.Add("Content-Length", strconv.Itoa(len(data.Encode())))
 	resp, err := client.Do(req)
+	if err != nil {
+		return c.JSON(500, map[string]interface{}{
+			"status":  500,
+			"message": "번역기 API 사용 중 응답을 받을 수 없음",
+		})
+	}
 	defer resp.Body.Close()
 	dec := json.NewDecoder(resp.Body)
 	dec.Decode(&translator)
