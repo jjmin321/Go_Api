@@ -8,8 +8,8 @@
 
 ## Stack
 |:---------:|:---------:|
-| Developer |제정민| 
-| Develop Language |GO|  
+| Developer | 제정민 | 
+| Develop Language | GO |  
 | Develop Tool     | Visual Studio Code, GoLand|
 
 
