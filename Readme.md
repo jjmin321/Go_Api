@@ -7,6 +7,7 @@
 - 텍스트에 따른 감정 분석
 
 ## Stack
+|           |     API      |
 |:---------:|:---------:|
 | Developer | 제정민 | 
 | Develop Language | GO |  
